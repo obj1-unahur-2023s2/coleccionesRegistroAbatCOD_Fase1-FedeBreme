@@ -1,0 +1,63 @@
+import registrosAbatidosDeDosListas.*
+
+describe "test de Cal of Duty" {
+	method initialize() {
+		registroAbatidos.agregarAbatidosVariosDias([43,18,49,62,33,39], [20221231,20230101,20230105,20230106,20230107,20230108])
+	}
+	
+	test "un dia el numero de abatidos fue = 49" {
+		assert.that(registroAbatidos.algunDiaAbatio(49))
+	}
+	
+	test "en ningun dia el numero de abatidos fue = 52" {
+		assert.notThat(registroAbatidos.algunDiaAbatio(52))
+	}
+	
+	test "el maximo de abatidos en el registro es = 62" {
+		assert.equals(62, registroAbatidos.maximoValorDeAbatidos())
+	}
+	
+	test "los valores de abatidos pares del registro son 18 y 62" {
+		assert.equals([18, 62], registroAbatidos.valoresDeAbatidosPares()) 
+	}
+	
+	test "hay una cantidad de abatidos que se encuentran entre 10 y 100" {
+		assert.that(registroAbatidos.abatidosEsAcotada(10,100))
+	}
+	
+	test "no hay una cantidad de abatidos que se encuentran entre 10 y 100" {
+		assert.notThat(registroAbatidos.abatidosEsAcotada(20,100))
+	}
+	
+	test "los valores de abatidos superiores a 35 son 43, 49, 62 y 39" {
+		assert.equals([20221231, 20230105, 20230106, 20230108], registroAbatidos.diasConAbatidosSuperioresA(35))
+	}
+	
+	test "los valores de los abatidos + 5 es = [48,23,54,67,38,44]" {
+		assert.equals([48,23,54,67,38,44], registroAbatidos.abatidosSumando(5))
+	}
+	
+	test "el total de abatidos es = 122" {
+		assert.equals(244, registroAbatidos.totalAbatidos())
+	}
+	
+	test "el ultimo valor de abatidos registrado es = 39" {
+		assert.equals(39, registroAbatidos.ultimoValorDeAbatidos())
+	}
+	
+	test "la cantidad de abatidos registrados mayor al primer registro es = 2" {
+		assert.equals(2, registroAbatidos.cantidadAbatidosMayorALaPrimera())
+	}
+	
+	test "hubo un dia en el que se registro mas de 50 abatidos" {
+		assert.that(registroAbatidos.algunDiaAbatioMasDe(50))
+	}
+	
+	test "no todos los dias se registro que se batieron a mas de 30" {
+		assert.notThat(registroAbatidos.todosLosDiasAbatioMasDe(30))
+	}
+	
+	test "no es crack" {
+		assert.notThat(registroAbatidos.esCrack())
+	}
+}
